@@ -38,5 +38,3 @@ testem.log
 .DS_Store
 Thumbs.db
 *.properties
-Revvit_Backend/.idea
-Revvit_Backend/target
