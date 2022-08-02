@@ -1,119 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <groupId>org.springframework.boot</groupId>
-        <version>2.5.5</version>
-    </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>  
+  <parent> 
+    <artifactId>spring-boot-starter-parent</artifactId>  
+    <groupId>org.springframework.boot</groupId>  
+    <version>2.5.5</version> 
+  </parent>
 
-    <groupId>org.example</groupId>
-    <artifactId>Revvit</artifactId>
-    <version>1.0-SNAPSHOT</version>
+  <groupId>org.example</groupId>
+  <artifactId>Revvit</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <properties> 
+    <maven.compiler.source>8</maven.compiler.source>  
+    <maven.compiler.target>8</maven.compiler.target> 
+  </properties>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>  
+      <artifactId>spring-boot-starter-web</artifactId> 
+    </dependency>
+    <dependency> 
+      <groupId>com.azure.spring</groupId>  
+      <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>  
+      <version>4.3.0</version> 
+    </dependency>
+    <dependency> 
+      <groupId>org.springframework.boot</groupId>  
+      <artifactId>spring-boot-starter-mail</artifactId> 
+    </dependency>
+    <dependency> 
+      <groupId>org.springframework.boot</groupId>  
+      <artifactId>spring-boot-starter-actuator</artifactId> 
+    </dependency>
+    <dependency> 
+      <groupId>org.springframework.boot</groupId>  
+      <artifactId>spring-boot-devtools</artifactId> 
+    </dependency>  
+    <dependency> 
+      <groupId>org.postgresql</groupId>  
+      <artifactId>postgresql</artifactId>  
+      <version>42.3.6</version> 
+    </dependency>  
+    <dependency> 
+      <groupId>io.jsonwebtoken</groupId>  
+      <artifactId>jjwt</artifactId>  
+      <version>0.9.1</version> 
+    </dependency>  
+    <dependency> 
+      <groupId>org.mockito</groupId>  
+      <artifactId>mockito-core</artifactId>  
+      <version>2.21.0</version>  
+      <scope>test</scope> 
+    </dependency>  
+    <dependency> 
+      <groupId>org.mockito</groupId>  
+      <artifactId>mockito-junit-jupiter</artifactId>  
+      <version>2.23.0</version>  
+      <scope>test</scope> 
+    </dependency>  
+    <dependency> 
+      <groupId>org.junit.jupiter</groupId>  
+      <artifactId>junit-jupiter-api</artifactId>  
+      <version>5.8.1</version>  
+      <scope>test</scope> 
+    </dependency>  
+    <dependency> 
+      <groupId>org.springframework</groupId>  
+      <artifactId>spring-webmvc</artifactId>  
+      <version>5.3.10</version> 
+    </dependency>  
+    <dependency> 
+      <groupId>org.junit.jupiter</groupId>  
+      <artifactId>junit-jupiter</artifactId>  
+      <scope>test</scope> 
+    </dependency>  
+    <dependency> 
+      <groupId>com.amazonaws</groupId>  
+      <artifactId>aws-java-sdk</artifactId>  
+      <version>1.12.259</version> 
+    </dependency>  
+    <dependency> 
+      <groupId>org.springframework.boot</groupId>  
+      <artifactId>spring-boot-starter-websocket</artifactId> 
+    </dependency> 
+  </dependencies>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+  <build> 
+    <plugins> 
+      <plugin> 
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-maven-plugin</artifactId>  
+        <version>2.5.5</version> 
+      </plugin>
 
-        <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
-            <version>4.3.0</version>
-        </dependency>
+      <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-webapp-maven-plugin</artifactId>
+        <version>2.5.0</version>
+        <configuration>
+          <schemaVersion>v2</schemaVersion>
+          <subscriptionId>aa52e2a3-fe0d-4603-a055-7e8c2dfdb4ff</subscriptionId>
+          <resourceGroup>Revvit</resourceGroup>
+          <appName>Revvit</appName>
+          <pricingTier>B1</pricingTier>
+          <region>centralus</region>
+          <appServicePlanName>ASP-Revvit-97ae</appServicePlanName>
+          <appServicePlanResourceGroup>Revvit</appServicePlanResourceGroup>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+          <runtime>
+            <os>Linux</os>
+            <javaVersion>Java 8</javaVersion>
+            <webContainer>Java SE</webContainer>
+          </runtime>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.3.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>2.21.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>2.23.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>5.3.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk</artifactId>
-            <version>1.12.259</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
-        </dependency>
-
-    </dependencies>
-
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.5</version>
-            </plugin>
-        </plugins>
-    </build>
+          <deployment>
+            <resources>
+              <resource>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+        </configuration>
+      </plugin>
+    </plugins> 
+  </build> 
 </project>
