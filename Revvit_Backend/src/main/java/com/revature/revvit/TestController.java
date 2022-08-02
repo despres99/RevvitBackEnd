@@ -10,6 +10,6 @@ public class TestController {
 
     @GetMapping("")
     public String hello() {
-        return "Testing Revvit Connection";
+        return "Test String2";
     }
 }
