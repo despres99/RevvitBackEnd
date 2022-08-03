@@ -10,6 +10,6 @@ public class TestController {
 
     @GetMapping("")
     public String hello() {
-        return "Test String2";
+        return "Testing Updated YML build command";
     }
 }
