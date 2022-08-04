@@ -5,8 +5,6 @@ import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotEmpty;
@@ -17,23 +15,26 @@ import java.util.List;
 @Container(containerName = "user_content")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class UserContentModel {
     @Id
     @GeneratedValue
     private String id;
 
     private String title;
-    @NotNull(message = "Message can't be null")
+    @NotEmpty(message = "Message can't be null")
     @Size(max = 2000, message = "Message can't be longer than 2000 characters")
     private String message;
-    @NotEmpty(message = "Type can't be empty")
+
+    @NotNull(message = "Type can't be empty")
     private String type;
+
     @NotNull
     private String timestamp;
+
     //todo should be not null but needs user class ready
     private String user_id; //needs user class to be ready
-    @NotEmpty(message = "Upvotes can't be empty")
+
+    @NotNull(message = "Upvotes can't be null")
     private int upVotes;
 
     private boolean edited;

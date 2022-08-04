@@ -15,6 +15,30 @@ public class UserContentController {
 
     private final UserContentService userContentService;
 
+    //region Post Controllers
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PostMapping(consumes = "application/json")
+    public void createNewUserContent(@RequestBody UserContentModel userContentModel){
+        userContentService.create(userContentModel);
+    }
+    //endregion
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PutMapping(value = "/upvote?={userContentId}",consumes = "application/json")
+    public void upVote(@PathVariable String userContentId){
+        userContentService.upVote(userContentId);
+    }
+
+
+    //region Put Controllers
+
+    //endregion
+    //region Delete Controllers
+
+    //endregion
+
+    //region Get Controllers
     @CrossOrigin
     @ResponseStatus(HttpStatus.ACCEPTED)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -29,4 +53,5 @@ public class UserContentController {
     public @ResponseBody Flux<UserContentModel> getAllCommentsOnPost(){
         return userContentService.getAllCommentsByPostSorted();
     }
+    //endregion
 }

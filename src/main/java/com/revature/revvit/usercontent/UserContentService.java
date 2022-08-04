@@ -1,10 +1,16 @@
 package com.revature.revvit.usercontent;
 
+import com.revature.revvit.util.custom_exception.InvalidRequestException;
+import com.revature.revvit.util.validators.UserContentValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
@@ -18,12 +24,19 @@ public class UserContentService {
     //region Edit User Content Services
     public void create(UserContentModel userContentModel){
         userContentModel.setTimestamp(LocalDateTime.now(ZoneOffset.UTC).toString());
+        userContentModel.setUpVotes(0);
+        UserContentValidator.validate(userContentModel);
         userContentRepository.save(userContentModel).subscribe();
     }
 
-    public void upVote(UserContentModel userContentModel){
-        userContentModel.setUpVotes(userContentModel.getUpVotes() + 1);
-        userContentRepository.save(userContentModel).subscribe();
+    public void upVote(String userContentId){
+        Mono<UserContentModel> mono = userContentRepository.findById(userContentId);
+        mono.subscribe(userContentModel -> {
+            if(userContentModel != null) {
+                userContentModel.setUpVotes(userContentModel.getUpVotes() + 1);
+                userContentRepository.save(userContentModel).subscribe();
+            }
+        });
     }
 
     public void editUserContent(UserContentModel userContentModel){
