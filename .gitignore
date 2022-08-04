@@ -39,4 +39,4 @@ testem.log
 Thumbs.db
 *.properties
 Revvit_Backend/.idea
-Revvit_Backend/target
+/target

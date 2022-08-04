@@ -33,7 +33,7 @@ class DataLoader{
                 .flatMap(exampleRepository::save))
                 .subscribe();
         System.out.println("Made it here");
-                *//*.thenMany(exampleRepository.findAll())
+               *//* .thenMany(exampleRepository.findAll())
                 .subscribe(exampleConnection -> eList.add(exampleConnection)));*//*
     }
 }*/
