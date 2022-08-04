@@ -1,4 +1,8 @@
 package com.revature.revvit.user;
 
-public interface UserRepository {
+import com.azure.spring.data.cosmos.repository.ReactiveCosmosRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends ReactiveCosmosRepository<User,String> {
 }
