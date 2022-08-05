@@ -10,7 +10,7 @@ import org.springframework.data.annotation.Id;
 import javax.validation.constraints.*;
 import java.util.List;
 
-@Container(containerName = "user")
+@Container(containerName = "user_container")
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
