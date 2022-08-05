@@ -1,19 +1,28 @@
 package com.revature.revvit.user;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
+import com.revature.revvit.usercontent.UserContentModel;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.annotation.Id;
+
+import javax.validation.constraints.*;
+import java.util.List;
 
 @Container(containerName = "user_container")
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class User {
+    @Id @GeneratedValue private String id;
+    @NonNull private String username;
+    @NonNull @Size(min = 8) private String password;
 
-    private String id;
-    private String username;
-    private String password;
-    private String email;
-    private String role;
+    @NonNull @Email private String email;
+    @Value("DEFAULT") private String role;
+    @Min(13) private int age;
     private String bio;
-    private int age;
+    private List<UserContentModel> posts;
 }

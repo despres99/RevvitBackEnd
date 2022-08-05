@@ -1,6 +1,5 @@
 package com.revature.revvit.usercontent;
 
-import com.revature.revvit.example.ExampleConnection;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
